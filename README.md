@@ -202,17 +202,17 @@ int main(){
 boink/
 ├── include/
 │   ├── boink.h           ← single include for user code
-│   ├── boink_math.h      ← Vec3, Mat4
-│   ├── boink_camera.h    ← Camera
-│   ├── boink_shapes.h    ← Shape (base), Cube, Plane, Triangle
-│   ├── boink_scene.h     ← Scene — manages all objects
-│   ├── boink_renderer.h  ← OpenGL renderer
-│   ├── boink_script.h    ← Lua scripting engine
-│   └── boink_window.h    ← GLFW window + main loop
+│   ├── mathutil.h      ← Vec3, Mat4
+│   ├── camera.h    ← Camera
+│   ├── shapes.h    ← Shape (base), Cube, Plane, Triangle
+│   ├── scene.h     ← Scene — manages all objects
+│   ├── renderer.h  ← OpenGL renderer
+│   ├── script.h    ← Lua scripting engine
+│   └── window.h    ← GLFW window + main loop
 ├── src/
-│   ├── boink_renderer.cpp
-│   ├── boink_script.cpp
-│   └── boink_window.cpp
+│   ├── renderer.cpp
+│   ├── script.cpp
+│   └── window.cpp
 ├── scripts/
 │   └── scene.lua         ← example Lua scene
 ├── main.cpp              ← entry point
@@ -246,7 +246,7 @@ Shape* addSphere(const std::string& name, int stacks = 16, int slices = 16) {
 }
 ```
 
-3. Register it in Lua inside `boink_script.cpp`:
+3. Register it in Lua inside `script.cpp`:
 
 ```cpp
 static int lua_addSphere(lua_State* L) {

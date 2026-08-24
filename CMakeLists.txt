@@ -22,10 +22,10 @@ message(STATUS "Lua found: ${LUA_INCLUDE_DIR}")
 
 # ── Engine library (static) ───────────────────────────────────────────────────
 add_library(boinklib STATIC
-    src/boink_renderer.cpp
-    src/boink_script.cpp
-    src/boink_window.cpp
-    src/boink_texture.cpp
+    src/renderer.cpp
+    src/script.cpp
+    src/window.cpp
+    src/texture.cpp
 )
 
 target_include_directories(boinklib PUBLIC

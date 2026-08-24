@@ -31,17 +31,17 @@ Thanks for your interest in contributing! This document covers how the codebase 
 boink/
 ├── include/          ← public headers — this is the API surface
 │   ├── boink.h       ← single include for downstream users
-│   ├── boink_math.h  ← Vec3, Mat4 (no external dependencies)
-│   ├── boink_camera.h
-│   ├── boink_shapes.h
-│   ├── boink_scene.h
-│   ├── boink_renderer.h
-│   ├── boink_script.h
-│   └── boink_window.h
+│   ├── mathutil.h  ← Vec3, Mat4 (no external dependencies)
+│   ├── camera.h
+│   ├── shapes.h
+│   ├── scene.h
+│   ├── renderer.h
+│   ├── script.h
+│   └── window.h
 ├── src/              ← implementation files
-│   ├── boink_renderer.cpp   (OpenGL + GLSL shaders)
-│   ├── boink_script.cpp     (Lua bridge)
-│   └── boink_window.cpp     (GLFW window + main loop)
+│   ├── renderer.cpp   (OpenGL + GLSL shaders)
+│   ├── script.cpp     (Lua bridge)
+│   └── window.cpp     (GLFW window + main loop)
 ├── scripts/          ← example and default Lua scenes
 ├── main.cpp          ← entry point / host application
 └── CMakeLists.txt
@@ -82,7 +82,7 @@ Boink follows a small, consistent set of rules. Please match the style of the su
 | Free functions | `camelCase` | `compileShader` |
 | Lua-facing C functions | `lua_camelCase` | `lua_addCube` |
 | Constants / macros | `UPPER_SNAKE` | `SCENE_KEY` |
-| Files | `boink_snake_case` | `boink_shapes.h` |
+| Files | `snake_case` | `shapes.h` |
 
 ### Formatting
 
@@ -104,13 +104,13 @@ Boink follows a small, consistent set of rules. Please match the style of the su
 ### Math
 
 - All angles are in **radians** internally. Degrees are only used at the API boundary (e.g. `Camera::fov`) and converted immediately.
-- `Vec3` and `Mat4` live in `boink_math.h` and have no external dependencies. Keep it that way.
+- `Vec3` and `Mat4` live in `mathutil.h` and have no external dependencies. Keep it that way.
 
 ---
 
 ## Adding a new shape
 
-1. **Define the class** in `include/boink_shapes.h`, inheriting from `Shape`:
+1. **Define the class** in `include/shapes.h`, inheriting from `Shape`:
 
 ```cpp
 // ─── Sphere ───────────────────────────────────────────────────────────────────
@@ -125,7 +125,7 @@ public:
 };
 ```
 
-2. **Add a factory method** to `Scene` in `include/boink_scene.h`:
+2. **Add a factory method** to `Scene` in `include/scene.h`:
 
 ```cpp
 Shape* addSphere(const std::string& name, int stacks = 16, int slices = 16) {
@@ -135,7 +135,7 @@ Shape* addSphere(const std::string& name, int stacks = 16, int slices = 16) {
 }
 ```
 
-3. **Register it in Lua** in `src/boink_script.cpp`:
+3. **Register it in Lua** in `src/script.cpp`:
 
 ```cpp
 static int lua_addSphere(lua_State* L) {
@@ -152,13 +152,13 @@ reg("addSphere", lua_addSphere);
 
 4. **Add an example** to `scripts/scene.lua` showing the new shape in action.
 
-The renderer uploads any shape automatically — you do not need to touch `boink_renderer.cpp` for a standard triangulated mesh.
+The renderer uploads any shape automatically — you do not need to touch `renderer.cpp` for a standard triangulated mesh.
 
 ---
 
 ## Extending the Lua API
 
-All Lua bindings live in `src/boink_script.cpp`. The pattern is always the same:
+All Lua bindings live in `src/script.cpp`. The pattern is always the same:
 
 ```cpp
 // 1. Write a static C function with signature int(lua_State*)
