@@ -60,12 +60,3 @@ install(TARGETS boink boinklib
 )
 install(DIRECTORY include/ DESTINATION include/boink)
 install(DIRECTORY scripts/ DESTINATION share/boink/scripts)
-
-# ── Print usage ───────────────────────────────────────────────────────────────
-message(STATUS "")
-message(STATUS "╔══════════════════════════════════════╗")
-message(STATUS "║   Boink 3D Engine - Build configured ║")
-message(STATUS "╚══════════════════════════════════════╝")
-message(STATUS "  Build:   cmake --build . --config Release")
-message(STATUS "  Run:     ./boink [optional_script.lua]")
-message(STATUS "")
