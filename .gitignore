@@ -15,6 +15,7 @@
 *.app
 *.dll
 *.bin
+boink
 
 # Debug files
 *.pdb
