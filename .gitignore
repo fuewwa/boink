@@ -14,6 +14,7 @@
 *.out
 *.app
 *.dll
+*.bin
 
 # Debug files
 *.pdb
