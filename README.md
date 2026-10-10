@@ -194,33 +194,6 @@ int main(){
 }
 ```
 
----
-
-## Project structure
-
-```
-boink/
-├── include/
-│   ├── boink.h           ← single include for user code
-│   ├── mathutil.h      ← Vec3, Mat4
-│   ├── camera.h    ← Camera
-│   ├── shapes.h    ← Shape (base), Cube, Plane, Triangle
-│   ├── scene.h     ← Scene — manages all objects
-│   ├── renderer.h  ← OpenGL renderer
-│   ├── script.h    ← Lua scripting engine
-│   └── window.h    ← GLFW window + main loop
-├── src/
-│   ├── renderer.cpp
-│   ├── script.cpp
-│   └── window.cpp
-├── scripts/
-│   └── scene.lua         ← example Lua scene
-├── main.cpp              ← entry point
-└── CMakeLists.txt
-```
-
----
-
 ## Extending: adding a new shape
 
 1. Create a class inheriting from `Boink::Shape`:
