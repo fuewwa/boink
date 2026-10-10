@@ -27,7 +27,7 @@ Lua 5.3 or 5.4
 CMake 3.16+
 ```
 
-### Ubuntu / Debian
+### Debian-based
 ```bash
 sudo apt install libglew-dev libglfw3-dev liblua5.4-dev cmake build-essential
 ```
